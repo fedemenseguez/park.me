@@ -91,7 +91,7 @@ function addToFirebase(data) {
  * Creates a map object with a click listener and a heatmap.
  */
 function initMap() {
-
+debugger;
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 0, lng: 0 },
         zoom: 18,
