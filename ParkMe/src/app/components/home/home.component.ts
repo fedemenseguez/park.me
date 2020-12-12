@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
         };
         this.map = new google.maps.Map(this.mapElement.nativeElement, {
           center: this.currentPosition,
-          zoom: 18,
+          zoom: 16,
           styles: [
             {
               featureType: 'poi',
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
               stylers: [{ visibility: 'off' }], // Turn off bus, train stations etc.
             },
           ],
-          disableDoubleClickZoom: true,
+          disableDoubleClickZoom: false,          
           streetViewControl: false,
         });
 

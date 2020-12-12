@@ -1,6 +1,18 @@
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <!-- Navbar content -->
+  <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="#">
       <img src="https://firebasestorage.googleapis.com/v0/b/parkme-445d3.appspot.com/o/logo.png?alt=media&token=37dfb8d7-f935-4f2a-b672-05e0013a4d3e" width="50" height="50" class="d-inline-block align-top" alt="">
     </a>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/parkme-445d3.appspot.com/o/logo_text.svg?alt=media&token=37dfb8d7-f935-4f2a-b672-05e0013a4d3e" width="65" height="65" class="d-inline-block align-top navbar-brand" alt=""> -->
+    <img src="https://firebasestorage.googleapis.com/v0/b/parkme-445d3.appspot.com/o/logo_text.svg?alt=media&token=e508b33b-0c75-4b3b-8c5a-41ef7b23ff60" width="200" height="38" class="d-inline-block align-top navbar-brand" alt="">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" (click)="goHome()">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" (click)="reportFreeSpace()">Report Free</a>
+      </div>
+    </div>
   </nav>
