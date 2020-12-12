@@ -21,7 +21,7 @@ const routes: Routes = [
     component: FreeSpaceReportComponent,
     pathMatch: 'full',
   },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, pathMatch: 'full'}, 
 ];
 
 @NgModule({

@@ -59,7 +59,7 @@ export class FreeSpaceReportComponent implements AfterViewInit {
   geocodeAddress(geocoder: google.maps.Geocoder, resultsMap: google.maps.Map) {
     const address = (document.getElementById('address') as HTMLInputElement)
       .value;
-    geocoder.geocode({ address: address }, (results, status) => {
+    geocoder.geocode({ address: address }, (results: any, status: any) => {
       if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
         new google.maps.Marker({
