@@ -1,8 +1,7 @@
+<div class="mt-2 mb-3" #mapContainer id="map"></div>
 <div class="container">
-  <div class="m-4">aca va un mapa</div>
   <form
     #freeSpaceForm="ngForm"
-    (ngSubmit)="submitFreeSpaceReport(freeSpaceForm)"
   >
     <div class="form-group">
       <label for="exampleInputEmail1"
@@ -12,16 +11,18 @@
       <input
         type="text"
         class="form-control"
-        name="adress"
-        #adress="ngModel"
-        id="adressInput"
+        name="address"
+        #address="ngModel"
+        id="addressInput"
         placeholder="Ingresar dirección"
         ngModel
         required
-        [ngClass]="{ 'is-invalid': adress.invalid && (adress.dirty || adress.touched) }"
+        [ngClass]="{
+          'is-invalid': address.invalid && (address.dirty || address.touched)
+        }"
       />
       <div
-        *ngIf="adress.invalid && (adress.dirty || adress.touched)"
+        *ngIf="address.invalid && (address.dirty || address.touched)"
         class="text-danger"
       >
         Debes ingresar una dirección
@@ -30,12 +31,22 @@
         >Ejemplo: 9 de Julio 430</small
       >
     </div>
-    <button
-      type="submit"
-      [disabled]="!freeSpaceForm.form.valid"
-      class="btn btn-primary"
-    >
-      Reportar
-    </button>
+    <div class="d-flex justify-content-center">
+      <button
+        (click)="searchPlace(freeSpaceForm)"
+        [disabled]="!freeSpaceForm.form.valid"
+        class="btn btn-primary mb-3 mr-1"
+      >
+        Establecer ubicación
+      </button>
+      <button
+        type="submit"
+        (click)=submitFreeSpaceReport(freeSpaceForm)
+        [disabled]="!freeSpaceForm.form.valid"
+        class="btn btn-success mb-3 ml-1"
+      >
+        Reportar
+      </button>
+    </div>
   </form>
 </div>

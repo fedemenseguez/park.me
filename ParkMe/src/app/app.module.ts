@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FreeSpaceReportComponent } from './components/free-space-report/free-space-report.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http'
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     FooterComponent,
     FreeSpaceReportComponent,
     HomeComponent,
+    HttpClientModule
   ],
   imports: [
     BrowserModule,
