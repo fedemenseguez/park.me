@@ -21,7 +21,7 @@ export class FreeSpaceReportComponent implements AfterViewInit {
     zoom: 13,
   };
   locationSet = false;
-
+  latLngSet: { lat: number, lng: number };
   constructor(readonly freeSpaceReportingService: FreeSpaceReportingService) {}
 
   ngAfterViewInit(): void {
@@ -38,11 +38,10 @@ export class FreeSpaceReportComponent implements AfterViewInit {
     this.geocoder?.geocode({ address: address }, (results, status) => {
       console.log(results);
       console.log(status);
-      var latLng = {
+      this.latLngSet = {
         lat: results[0].geometry.location.lat(),
-        lng: results[0].geometry.location.lng(),
+        lng: results[0].geometry.location.lng()
       };
-      console.log(latLng);
       if (status == 'OK') {
         this.map?.setCenter(results[0].geometry.location);
         this.map?.setZoom(16);
@@ -57,21 +56,18 @@ export class FreeSpaceReportComponent implements AfterViewInit {
     });
   }
 
-  geocodeAddress(
-    geocoder: google.maps.Geocoder,
-    resultsMap: google.maps.Map
-  ) {
-    const address = (document.getElementById("address") as HTMLInputElement)
+  geocodeAddress(geocoder: google.maps.Geocoder, resultsMap: google.maps.Map) {
+    const address = (document.getElementById('address') as HTMLInputElement)
       .value;
     geocoder.geocode({ address: address }, (results, status) => {
-      if (status === "OK") {
+      if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
         new google.maps.Marker({
           map: resultsMap,
           position: results[0].geometry.location,
         });
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
@@ -81,6 +77,6 @@ export class FreeSpaceReportComponent implements AfterViewInit {
   }
 
   submitFreeSpaceReport(form: NgForm) {
-    this.freeSpaceReportingService.reportFreeSpace();
+    this.freeSpaceReportingService.reportFreeSpace(this.latLngSet);
   }
 }
