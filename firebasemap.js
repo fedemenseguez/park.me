@@ -1,6 +1,6 @@
 //AIzaSyCc-JEvXUfrQzDZaJ1ZZHQ8_7j02HazCtM
 let currentPosition = null;
-let slots = {};
+let slotMarkers = {};
 const config = {
     apiKey: "AIzaSyAuJ8u4qfLZIursyt0_-auisQvFezm1fi0",
     authDomain: "parkme-445d3.firebaseapp.com",
@@ -18,7 +18,7 @@ firebase.initializeApp(config);
  * Icons.
  */
 const icons = {
-    parking: "http://maps.google.com/mapfiles/kml/shapes/cross-hairs_highlight.png",
+    parking: "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png",
     car: "http://earth.google.com/images/kml-icons/track-directional/track-0.png"
 };
 
@@ -59,39 +59,38 @@ function getTimestamp(addClick) {
     ref.onDisconnect().remove();  // Delete reference from firebase on disconnect.
 
     // Set value to timestamp.
-    ref.set(firebase.database.ServerValue.TIMESTAMP, function(err) {
-      if (err) {  // Write to last message was unsuccessful.
-        console.log(err);
-      } else {  // Write to last message was successful.
-        ref.once('value', function(snap) {
-          addClick(snap.val());  // Add click with same timestamp.
-        }, function(err) {
-          console.warn(err);
-        });
-      }
+    ref.set(firebase.database.ServerValue.TIMESTAMP, function (err) {
+        if (err) {  // Write to last message was unsuccessful.
+            console.log(err);
+        } else {  // Write to last message was successful.
+            ref.once('value', function (snap) {
+                addClick(snap.val());  // Add click with same timestamp.
+            }, function (err) {
+                console.warn(err);
+            });
+        }
     });
-  }
+}
 
 
 function addToFirebase(data) {
-    debugger;
-    getTimestamp(function(timestamp) {
-      // Add the new timestamp to the record data.
-      data.timestamp = timestamp;
-      var ref = firebase.database().ref('slots').push(data, function(err) {
-        if (err) {  // Data was not written to firebase.
-          console.warn(err);
-        }
-      });
+    getTimestamp(function (timestamp) {
+        // Add the new timestamp to the record data.
+        data.timestamp = timestamp;
+        var ref = firebase.database().ref('slots').push(data, function (err) {
+            if (err) {  // Data was not written to firebase.
+                console.warn(err);
+            }
+        });
     });
-  }
+}
 
 
 /**
  * Creates a map object with a click listener and a heatmap.
  */
 function initMap() {
-debugger;
+
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 0, lng: 0 },
         zoom: 18,
@@ -109,7 +108,7 @@ debugger;
 
 
     // Create the DIV to hold the control and call the makeInfoBox() constructor passing in this DIV.
-    // let infoWindow = new google.maps.InfoWindow();
+    let infoWindow = new google.maps.InfoWindow();
     var infoBoxDiv = document.createElement('div');
     makeInfoBox(infoBoxDiv, map);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv);
@@ -121,11 +120,7 @@ debugger;
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
-                // infoWindow.setPosition(currentPosition);
-                // infoWindow.setContent("Location found.");
-                // infoWindow.open(map);
                 map.setCenter(currentPosition);
-
                 const marker = new google.maps.Marker({
                     position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                     icon: icons.car,
@@ -140,21 +135,39 @@ debugger;
 
     var slots = firebase.database().ref('slots');
     slots.once('value').then((snapshot) => {
-        snapshot.forEach(function(data) {
+        snapshot.forEach(function (data) {
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(data.val().lat, data.val().lng),
                 icon: icons.parking,
                 map: map,
+                remoteKey: data.key
             });
-            slots[data.key] = marker;
+            slotMarkers[data.key] = marker;
+            removeSlotHandler(map, infoWindow, marker);
         });
     });
 
-    // Listen for clicks and add the location of the click to firebase.
-    map.addListener('click', function(e) {
-        const data = {};
-        data.lat = e.latLng.lat();
-        data.lng = e.latLng.lng();
-        addToFirebase(data);
+    // // Listen for clicks and add the location of the click to firebase.
+    // map.addListener('click', function(e) {
+    //     const data = {};
+    //     data.lat = e.latLng.lat();
+    //     data.lng = e.latLng.lng();
+    //     addToFirebase(data);
+    // });
+}
+
+function removeSlotHandler(map, infowindow,marker) {
+    google.maps.event.addListener(marker, 'click', function () {
+        var button = document.createElement("button");
+        button.innerHTML = "Estacionar aqu&iacute;";
+        button.classList.add("btn");
+        button.classList.add("btn-success");
+        button.addEventListener("click", function () {
+            marker.setMap(null);
+            delete slotMarkers[marker.remoteKey];
+            firebase.database().ref(`slots/${marker.remoteKey}`).remove();
+        });
+        infowindow.setContent(button);
+        infowindow.open(map, marker);
     });
 }
