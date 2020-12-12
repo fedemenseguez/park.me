@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Park Me</title>
-</head>
-<body>
-    
-</body>
+<html>
+  <head>
+    <style type="text/css">
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuJ8u4qfLZIursyt0_-auisQvFezm1fi0
+        &libraries=visualization&callback=initMap">
+    </script>
+    <!-- <script src="www.gstatic.com/firebasejs/5.3.0/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+
+
+    <script src="firebasemap.js"></script>
+
+  </body>
 </html>
