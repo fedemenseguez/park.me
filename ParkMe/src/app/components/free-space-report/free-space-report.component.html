@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="m-4">aca va un mapa</div>
+  <form
+    #freeSpaceForm="ngForm"
+    (ngSubmit)="submitFreeSpaceReport(freeSpaceForm)"
+  >
+    <div class="form-group">
+      <label for="exampleInputEmail1"
+        >Ingresa la dirección del espacio de estacionamiento libre que deseas
+        reportar:</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        name="adress"
+        #adress="ngModel"
+        id="adressInput"
+        placeholder="Ingresar dirección"
+        ngModel
+        required
+        [ngClass]="{ 'is-invalid': adress.invalid && (adress.dirty || adress.touched) }"
+      />
+      <div
+        *ngIf="adress.invalid && (adress.dirty || adress.touched)"
+        class="text-danger"
+      >
+        Debes ingresar una dirección
+      </div>
+      <small id="emailHelp" class="form-text text-muted"
+        >Ejemplo: 9 de Julio 430</small
+      >
+    </div>
+    <button
+      type="submit"
+      [disabled]="!freeSpaceForm.form.valid"
+      class="btn btn-primary"
+    >
+      Reportar
+    </button>
+  </form>
+</div>

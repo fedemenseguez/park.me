@@ -6,11 +6,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FreeSpaceReportComponent } from './components/free-space-report/free-space-report.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '',
     component: AppComponent,
+  },
+  {
+    path: 'free-space-report',
+    component: FreeSpaceReportComponent,
+    pathMatch: 'full',
   },
 ];
 
@@ -19,13 +26,15 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    FreeSpaceReportComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forChild(routes),
-    NgbModule
+    RouterModule.forRoot(routes),
+    NgbModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
