@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FreeSpaceReportComponent } from './components/free-space-report/free-space-report.component';
+import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: FreeSpaceReportComponent,
     pathMatch: 'full',
   },
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
@@ -27,14 +29,15 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     FreeSpaceReportComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, HomeComponent]
 })
 export class AppModule {}
