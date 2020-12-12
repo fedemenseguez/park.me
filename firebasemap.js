@@ -18,7 +18,7 @@ firebase.initializeApp(config);
  * Icons.
  */
 const icons = {
-    parking: "http://maps.google.com/mapfiles/kml/shapes/cross-hairs_highlight.png",
+    parking: "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png",
     car: "http://earth.google.com/images/kml-icons/track-directional/track-0.png"
 };
 
@@ -91,7 +91,7 @@ function addToFirebase(data) {
  * Creates a map object with a click listener and a heatmap.
  */
 function initMap() {
-debugger;
+
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 0, lng: 0 },
         zoom: 18,
