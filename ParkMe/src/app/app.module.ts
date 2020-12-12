@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes =[
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
