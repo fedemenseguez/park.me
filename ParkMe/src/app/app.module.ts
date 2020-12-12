@@ -6,12 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './components/home/home.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-  },
+const routes: Routes =[
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({
@@ -19,13 +17,14 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forChild(routes),
+    RouterModule.forRoot(routes),
     NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, HomeComponent]
 })
 export class AppModule { }
