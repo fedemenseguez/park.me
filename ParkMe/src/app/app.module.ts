@@ -10,6 +10,7 @@ import { FreeSpaceReportComponent } from './components/free-space-report/free-sp
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'home', component: HomeComponent, pathMatch: 'full'}, 
+  { path: 'callback', component: LoginComponent}, 
 ];
 
 @NgModule({
@@ -36,6 +38,7 @@ const routes: Routes = [
     FooterComponent,
     FreeSpaceReportComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

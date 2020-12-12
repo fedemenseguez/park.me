@@ -146,13 +146,13 @@ export class HomeComponent implements OnInit {
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior.
-    var controlText = document.createElement('div');
-    controlText.style.color = 'rgb(25,25,25)';
-    controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-    controlText.style.fontSize = '100%';
-    controlText.style.padding = '10px';
-    controlText.textContent = 'Selecciona algun estacionamiento disponible';
-    controlUI.appendChild(controlText);
+    // var controlText = document.createElement('div');
+    // controlText.style.color = 'rgb(25,25,25)';
+    // controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+    // controlText.style.fontSize = '100%';
+    // controlText.style.padding = '10px';
+    // controlText.textContent = 'Selecciona algun estacionamiento disponible';
+    // controlUI.appendChild(controlText);
   }
 
   // getTimestamp(addClick: any) {

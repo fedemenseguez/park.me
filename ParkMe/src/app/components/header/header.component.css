@@ -1,11 +1,15 @@
 .brand {
-    position: absolute;
-    left: 50%;
-    margin-left: -50px !important;  /* 50% of your logo width */
-    display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important; /* 50% of your logo width */
+  display: block;
 }
 .navbar-brand {
-    transform: translateX(-50%);
-    left: 50%;
-    position: relative;
-  }
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+}
+
+.nav-item {
+  color: #5c68d2 !important;
+}
