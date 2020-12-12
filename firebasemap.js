@@ -120,11 +120,7 @@ function initMap() {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
-                // infoWindow.setPosition(currentPosition);
-                // infoWindow.setContent("Location found.");
-                // infoWindow.open(map);
                 map.setCenter(currentPosition);
-
                 const marker = new google.maps.Marker({
                     position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                     icon: icons.car,
@@ -147,7 +143,7 @@ function initMap() {
                 remoteKey: data.key
             });
             slotMarkers[data.key] = marker;
-            makeInfoWindowEvent(map, infoWindow, marker);
+            removeSlotHandler(map, infoWindow, marker);
         });
     });
 
@@ -160,7 +156,7 @@ function initMap() {
     // });
 }
 
-function makeInfoWindowEvent(map, infowindow,marker) {
+function removeSlotHandler(map, infowindow,marker) {
     google.maps.event.addListener(marker, 'click', function () {
         var button = document.createElement("button");
         button.innerHTML = "Estacionar aqu&iacute;";
