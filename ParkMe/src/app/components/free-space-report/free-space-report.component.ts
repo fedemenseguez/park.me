@@ -78,5 +78,6 @@ export class FreeSpaceReportComponent implements AfterViewInit {
 
   submitFreeSpaceReport(form: NgForm) {
     this.freeSpaceReportingService.reportFreeSpace(this.latLngSet);
+    form.reset();
   }
 }
